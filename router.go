@@ -3,7 +3,8 @@
 package main
 
 import (
-	handler "github.com/buddyxiao/navmark-go/biz/handler"
+	handler "github.com/buddyxiao/navmark-go/internal/handler"
+	"github.com/buddyxiao/navmark-go/internal/middleware"
 	"github.com/cloudwego/hertz/pkg/app/server"
 )
 
@@ -12,4 +13,15 @@ func customizedRegister(r *server.Hertz) {
 	r.GET("/ping", handler.Ping)
 
 	// your code ...
+	group := r.Group("/api")
+	// 不需要认证的API
+	{
+		group.GET("/captchaImage", handler.CaptchaImag)
+		group.POST("/Login", handler.Login)
+	}
+	// 需要认证的API
+	group.Use(middleware.AuthMiddleware)
+	{
+
+	}
 }

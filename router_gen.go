@@ -3,7 +3,7 @@
 package main
 
 import (
-	router "github.com/buddyxiao/navmark-go/biz/router"
+	router "github.com/buddyxiao/navmark-go/internal/router"
 	"github.com/cloudwego/hertz/pkg/app/server"
 )
 
